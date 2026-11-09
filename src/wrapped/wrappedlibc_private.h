@@ -926,7 +926,7 @@ GO(__isoc99_vsscanf, iFppp)
 // __isoc99_vswscanf
 // __isoc99_vwscanf
 // __isoc99_wscanf
-GO2(__isoc23_sscanf, iFppV, __isoc99_sscanf)
+GO2(__isoc23_sscanf, iFppV, __isoc99_vsscanf)
 #endif
 GO(isprint, iFi)
 // __isprint_l
