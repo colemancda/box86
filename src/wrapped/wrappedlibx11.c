@@ -1577,11 +1577,11 @@ EXPORT int my_XGetEventData(x86emu_t* emu, void* dpy, my_XGenericEventCookie_t* 
         if(cookie->type==0x23 && cookie->extension==xi_opcode) {
             if(saved_cookie) {
                 printf_log(LOG_INFO, "Warning, saved cookie not freed before new call to XGetEventData\n");
-                saved_cookie = cookie;
-                saved_xideviceevent = cookie->data;
-                UnalignedXIDeviceEvent(cookie->data);
-                cookie->data = &unaligned_xideviceevent;
             }
+            saved_cookie = cookie;
+            saved_xideviceevent = cookie->data;
+            UnalignedXIDeviceEvent(cookie->data);
+            cookie->data = &unaligned_xideviceevent;
         }
     }
 
