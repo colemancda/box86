@@ -46,6 +46,10 @@
 #include "x86emu.h"
 #include "debug.h"
 #include "wrapper.h"
+
+#ifndef MAP_FIXED_NOREPLACE
+#define MAP_FIXED_NOREPLACE 0x100000
+#endif
 #include "bridge.h"
 #include "callback.h"
 #include "librarian.h"
@@ -3100,7 +3104,7 @@ EXPORT void* my_mmap(x86emu_t* emu, void *addr, unsigned long length, int prot, 
     #ifdef NOALIGN
     void* new_addr = addr;
     #else
-    void* new_addr = (flags&MAP_FIXED)?addr:(addr?findBlockNearHint(addr, length, 0):find32bitBlock(length));
+    void* new_addr = (flags&(MAP_FIXED|MAP_FIXED_NOREPLACE))?addr:(addr?findBlockNearHint(addr, length, 0):find32bitBlock(length));
     #endif
     void* ret = mmap(new_addr, length, prot, flags, fd, offset);
     #ifndef NOALIGN
@@ -3168,14 +3172,14 @@ EXPORT void* my_mmap64(x86emu_t* emu, void *addr, unsigned long length, int prot
     #ifdef NOALIGN
     void* new_addr = addr;
     #else
-    void* new_addr = (flags&MAP_FIXED)?addr:(addr?findBlockNearHint(addr, length, 0):find32bitBlock(length));
+    void* new_addr = (flags&(MAP_FIXED|MAP_FIXED_NOREPLACE))?addr:(addr?findBlockNearHint(addr, length, 0):find32bitBlock(length));
     #endif
     void* ret = mmap64(new_addr, length, prot, flags, fd, offset);
     #ifndef NOALIGN
     if(!addr && ret!=new_addr && ret!=MAP_FAILED) {
         munmap(ret, length);
         loadProtectionFromMap();    // reload map, because something went wrong previously
-        new_addr = (flags&MAP_FIXED)?addr:(addr?findBlockNearHint(addr, length, 0):find32bitBlock(length));
+        new_addr = (flags&(MAP_FIXED|MAP_FIXED_NOREPLACE))?addr:(addr?findBlockNearHint(addr, length, 0):find32bitBlock(length));
         ret = mmap64(new_addr, length, prot, flags, fd, offset);
     } else if(addr && ret!=MAP_FAILED && ret!=new_addr && 
       ((uintptr_t)ret&0xffff) && !(flags&MAP_FIXED) && box86_wine) {

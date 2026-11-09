@@ -297,6 +297,9 @@ scwrap_t syscallwrap[] = {
 #endif
 #ifdef __NR_memfd_create
     [356] { __NR_memfd_create, 2},
+    #ifdef __NR_futex_time64
+    [422] { __NR_futex_time64, 6 },
+    #endif
 #endif
     //[449] { __NR_futex_waitv, 5},
 };

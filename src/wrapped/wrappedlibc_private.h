@@ -548,6 +548,16 @@ GOW(getpgid, uFu)
 // __getpgid
 GO(getpgrp, iFv)
 // get_phys_pages   // Weak
+GO(close_range, iFuui)
+GO(copy_file_range, lFipipLu)
+GO(posix_madvise, iFpLi)
+GO(setns, iFii)
+GO(unshare, iFi)
+GO(getttynam, pFp)
+GO(lchmod, iFpu)
+GO2(__isoc23_strtoimax, IFppi, strtoimax)
+GO2(__isoc23_strtoumax, UFppi, strtoumax)
+GO(statx, iFipiup)
 GO(getpid, uFv)
 GO(__getpid, uFv)
 // getpmsg
@@ -1245,7 +1255,7 @@ GO(__openat64_2, iFipON)
 // __open_catalog
 GOW(opendir, pFp)
 GO(openlog, vFpii)
-// open_memstream
+GO(open_memstream, pFpp)
 // open_wmemstream
 DATAB(optarg, 4)
 DATA(opterr, 4)

@@ -70,8 +70,8 @@ GO(setprogname, vFp)
 //GO(sradixsort, 
 //GO(stravis, 
 //GO(strenvisx, 
-//GO(strlcat, 
-//GO(strlcpy, 
+GO(strlcat, uFppu)
+GO(strlcpy, uFppu)
 //GO(strmode, 
 //GO(strnstr, 
 //GO(strnunvis, 

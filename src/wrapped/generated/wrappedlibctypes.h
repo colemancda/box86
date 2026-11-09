@@ -169,8 +169,10 @@ typedef int32_t (*iFpLiLppp_t)(void*, uintptr_t, int32_t, uintptr_t, void*, void
 	GO(sscanf, iFppV_t) \
 	GO(swscanf, iFppV_t) \
 	GO(__libc_open, iFpOu_t) \
+	GO(__isoc23_strtoimax, IFppi_t) \
 	GO(__isoc23_strtoll, IFppi_t) \
 	GO(__isoc23_strtoull, UFppi_t) \
+	GO(__isoc23_strtoumax, UFppi_t) \
 	GO(__strtold_internal, KFppi_t) \
 	GO(__strtold_l, KFppp_t) \
 	GO(strtold_l, KFppp_t) \

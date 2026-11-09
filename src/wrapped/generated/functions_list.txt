@@ -1249,6 +1249,7 @@
 #() iFiiupp
 #() iFiipip
 #() iFipiii
+#() iFipiup
 #() iFipipi
 #() iFipipu
 #() iFipuii
@@ -1680,6 +1681,7 @@
 #() uFpppppi
 #() uFpppppp
 #() UFpippup
+#() lFipipLu
 #() lFipLipu
 #() lFipLipp
 #() lFipLpLL
@@ -3244,9 +3246,11 @@ wrappedlibc:
   - __libc_open
 - iFpOV:
 - IFppi:
+  - __isoc23_strtoimax
   - __isoc23_strtoll
 - UFppi:
   - __isoc23_strtoull
+  - __isoc23_strtoumax
 - KFppi:
   - __strtold_internal
 - KFppp:
